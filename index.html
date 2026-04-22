@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quizz Bench | Global Pressurization</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { background: radial-gradient(circle at center, #0a0a2e 0%, #000000 100%); min-height: 100vh; overflow-x: hidden; }
+        .octahedron {
+            width: 80px; height: 80px;
+            background: linear-gradient(45deg, #ffd700, #ff8c00);
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+            animation: float 4s ease-in-out infinite, rotate 15s linear infinite;
+            box-shadow: 0 0 50px rgba(255, 215, 0, 0.5);
+        }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+        @keyframes rotate { 0% { transform: rotateY(0deg); } 100% { transform: rotateY(360deg); } }
+        .glow-text { text-shadow: 0 0 15px rgba(255, 215, 0, 0.6); }
+        .timer-unit { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 215, 0, 0.3); padding: 10px; border-radius: 8px; min-width: 60px; }
+    </style>
+</head>
+<body class="flex flex-col items-center justify-center p-6 text-white font-sans">
+
+    <div class="octahedron mb-8"></div>
+
+    <h1 class="text-3xl md:text-5xl font-bold mb-2 tracking-tighter glow-text uppercase text-center">Quizz Bench</h1>
+    <p class="text-sm md:text-base text-blue-300 mb-8 font-light italic tracking-widest text-center">THE GLOBAL BRAIN RACE IS LIVE</p>
+
+    <div class="flex gap-4 mb-10 text-center">
+        <div class="timer-unit"><div id="days" class="text-2xl font-bold text-yellow-500">00</div><div class="text-[10px] uppercase">Days</div></div>
+        <div class="timer-unit"><div id="hours" class="text-2xl font-bold text-yellow-500">00</div><div class="text-[10px] uppercase">Hrs</div></div>
+        <div class="timer-unit"><div id="mins" class="text-2xl font-bold text-yellow-500">00</div><div class="text-[10px] uppercase">Min</div></div>
+        <div class="timer-unit"><div id="secs" class="text-2xl font-bold text-yellow-500">00</div><div class="text-[10px] uppercase">Sec</div></div>
+    </div>
+
+    <div class="bg-white/5 p-8 rounded-3xl backdrop-blur-xl border border-white/10 w-full max-w-md text-center">
+        <h2 class="text-lg mb-2 font-semibold tracking-widest text-yellow-500">ASTRA-LAB STATUS: PRESSURIZING</h2>
+        <p class="text-xs text-gray-400 mb-6">Sector 01 (Africa) & Sector 02 (Asia) Connection Pending...</p>
+        
+        <form class="flex flex-col gap-4">
+            <input type="email" placeholder="ENTER CITIZEN EMAIL" 
+                   class="bg-black/60 border border-white/20 p-4 rounded-xl focus:outline-none focus:border-yellow-500 text-center tracking-widest text-sm">
+            <button class="bg-yellow-500 hover:bg-white text-black font-black p-4 rounded-xl transition-all uppercase tracking-tighter">
+                Claim My Genesis ID
+            </button>
+        </form>
+    </div>
+
+    <div class="mt-8 opacity-60 text-[10px] tracking-[0.3em] uppercase">
+        Mission Control: Citizen #000-Pending
+    </div>
+
+    <script>
+        // Set the date we're counting down to (7 Days from now)
+        const countDownDate = new Date().getTime() + (7 * 24 * 60 * 60 * 1000);
+
+        const x = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = countDownDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerHTML = days;
+            document.getElementById("hours").innerHTML = hours;
+            document.getElementById("mins").innerHTML = minutes;
+            document.getElementById("secs").innerHTML = seconds;
+
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("timer").innerHTML = "LAB OPEN";
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
