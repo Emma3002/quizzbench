@@ -38,10 +38,10 @@
         <h2 class="text-lg mb-2 font-semibold tracking-widest text-yellow-500">ASTRA-LAB STATUS: PRESSURIZING</h2>
         <p class="text-xs text-gray-400 mb-6">Sector 01 (Africa) & Sector 02 (Asia) Connection Pending...</p>
         
-        <form class="flex flex-col gap-4">
-            <input type="email" placeholder="ENTER CITIZEN EMAIL" 
-                   class="bg-black/60 border border-white/20 p-4 rounded-xl focus:outline-none focus:border-yellow-500 text-center tracking-widest text-sm">
-            <button class="bg-yellow-500 hover:bg-white text-black font-black p-4 rounded-xl transition-all uppercase tracking-tighter">
+        <form action="https://formspree.io/f/xvgzlowz" method="POST" class="flex flex-col gap-4">
+            <input type="email" name="email" placeholder="ENTER CITIZEN EMAIL" required
+                   class="bg-black/60 border border-white/20 p-4 rounded-xl focus:outline-none focus:border-yellow-500 text-center tracking-widest text-sm text-white">
+            <button type="submit" class="bg-yellow-500 hover:bg-white text-black font-black p-4 rounded-xl transition-all uppercase tracking-tighter">
                 Claim My Genesis ID
             </button>
         </form>
@@ -52,23 +52,18 @@
     </div>
 
     <script>
-        // Set the date we're counting down to (7 Days from now)
         const countDownDate = new Date().getTime() + (7 * 24 * 60 * 60 * 1000);
-
         const x = setInterval(function() {
             const now = new Date().getTime();
             const distance = countDownDate - now;
-
             const days = Math.floor(distance / (1000 * 60 * 60 * 24));
             const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
             document.getElementById("days").innerHTML = days;
             document.getElementById("hours").innerHTML = hours;
             document.getElementById("mins").innerHTML = minutes;
             document.getElementById("secs").innerHTML = seconds;
-
             if (distance < 0) {
                 clearInterval(x);
                 document.getElementById("timer").innerHTML = "LAB OPEN";
