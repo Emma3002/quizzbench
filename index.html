@@ -54,23 +54,36 @@ DOCTYPE html>
     </div>
 
     <script>
-        const countDownDate = new Date().getTime() + (7 * 24 * 60 * 60 * 1000);
-        const x = setInterval(function() {
-            const now = new Date().getTime();
-            const distance = countDownDate - now;
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-            document.getElementById("days").innerHTML = days;
-            document.getElementById("hours").innerHTML = hours;
-            document.getElementById("mins").innerHTML = minutes;
-            document.getElementById("secs").innerHTML = seconds;
-            if (distance < 0) {
-                clearInterval(x);
-                document.getElementById("timer").innerHTML = "LAB OPEN";
-            }
-        }, 1000);
-    </script>
+    // 1. CAPTURE IDENTITY
+    // This finds your form and waits for the user to click the button
+    const form = document.querySelector('form');
+    
+    if (form) {
+        form.addEventListener('submit', () => {
+            const emailInput = document.querySelector('input[type="email"]').value;
+            
+            // This is the 'Polishing' step: 
+            // It saves the email into the browser's secret memory (LocalStorage)
+            localStorage.setItem('citizenEmail', emailInput);
+            
+            console.log("Identity Captured: " + emailInput);
+        });
+    }
+
+    // 2. OPTIONAL: KEEP THE COUNTDOWN (If you still want it)
+    const countDownDate = new Date().getTime() + 86400000; // 24 hours from now
+    const x = setInterval(function() {
+        const now = new Date().getTime();
+        const distance = countDownDate - now;
+        
+        // You can keep your existing days/hours/mins logic here if you have 
+        // the <span> elements for them in your HTML above.
+        
+        if (distance < 0) {
+            clearInterval(x);
+        }
+    }, 1000);
+</script>
+
 </body>
 </html>
